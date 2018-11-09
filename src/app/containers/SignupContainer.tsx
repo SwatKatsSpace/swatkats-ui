@@ -3,7 +3,12 @@ import { Header } from "../../base/components/Header";
 import { SignupComponent } from "../components/SignupComponent";
 import { SwatkatsActionType } from "../actions/types";
 import { Action, Dispatch, bindActionCreators } from "redux";
-import { setUserName } from "../actions/signup";
+import {
+  setUserName,
+  setUserEmail,
+  setUserPhone,
+  setUserAadharId
+} from "../actions/signup";
 import { connect } from "react-redux";
 
 interface StateProps {
@@ -15,13 +20,25 @@ interface StateProps {
 
 interface DispatchProps {
   setUserName: (name: string) => void;
+  setUserEmail: (email: string) => void;
+  setUserPhone: (phone: string) => void;
+  setUserAadharId: (aadharId: string) => void;
 }
 
 type Props = StateProps & DispatchProps;
 
 class Signup extends Component<Props> {
   render() {
-    const { name, email, phone, aadharId, setUserName } = this.props;
+    const {
+      name,
+      email,
+      phone,
+      aadharId,
+      setUserName,
+      setUserEmail,
+      setUserPhone,
+      setUserAadharId
+    } = this.props;
 
     return (
       <Fragment>
@@ -32,6 +49,9 @@ class Signup extends Component<Props> {
           phone={phone}
           aadharId={aadharId}
           setUserName={setUserName}
+          setUserEmail={setUserEmail}
+          setUserPhone={setUserPhone}
+          setUserAadharId={setUserAadharId}
         />
       </Fragment>
     );
@@ -51,7 +71,11 @@ const mapStateToProps = (state: SignUpState): StateProps => {
 
 const mapDispatchToProps = (
   dispatch: Dispatch<Action<SwatkatsActionType>>
-): DispatchProps => bindActionCreators({ setUserName }, dispatch);
+): DispatchProps =>
+  bindActionCreators(
+    { setUserName, setUserEmail, setUserPhone, setUserAadharId },
+    dispatch
+  );
 
 export const SignupContainer = connect<StateProps, DispatchProps, {}, {}>(
   mapStateToProps,

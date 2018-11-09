@@ -2,10 +2,10 @@ import { Action, ActionCreator } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 export enum SwatkatsActionType {
-  setUserName,
-  setUserEmail,
-  setUserPhone,
-  setUseraadharId
+  setUserName = "@swatkats/setusername",
+  setUserEmail = "@swatkats/setUserEmail",
+  setUserPhone = "@swatkats/setUserPhone",
+  setUserAadharId = "@swatkats/setUserAadharId",
 }
 
 export interface SwatkatsAction extends Action<SwatkatsActionType> {

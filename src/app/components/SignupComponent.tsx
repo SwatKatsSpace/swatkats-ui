@@ -1,6 +1,7 @@
 import React, { SFC, Fragment } from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 export const SignupComponent: SFC<{
   name: string;
@@ -8,55 +9,65 @@ export const SignupComponent: SFC<{
   phone: string;
   aadharId: string;
   setUserName: (name: string) => void;
-}> = ({ name, email, phone, aadharId, setUserName }) => {
-
+  setUserEmail: (email: string) => void;
+  setUserPhone: (phone: string) => void;
+  setUserAadharId: (aadharId: string) => void;
+}> = ({
+  name,
+  email,
+  phone,
+  aadharId,
+  setUserName,
+  setUserEmail,
+  setUserPhone,
+  setUserAadharId
+}) => {
   return (
     <Fragment>
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={8}>
             <TextField
-              id="outlined-name"
+              id="name"
               label="Name"
-              // className={classes.textField}
-              // value={name}
-              onChange={event => setUserName("")}
+              value={name}
+              onChange={event => setUserName(event.target.value)}
               margin="normal"
               variant="standard"
             />
           </Grid>
           <Grid container justify="center" spacing={8}>
             <TextField
-              id="outlined-name"
+              id="email"
               label="Email"
-              // className={classes.textField}
-              value={"hello"}
-              onChange={() => console.log("hello111")}
+              value={email}
+              onChange={event => setUserEmail(event.target.value)}
               margin="normal"
               variant="standard"
             />
           </Grid>
           <Grid container justify="center" spacing={8}>
             <TextField
-              id="outlined-name"
+              id="phone"
               label="Phone"
-              // className={classes.textField}
-              value={"hello"}
-              onChange={() => console.log("hello111")}
+              value={phone}
+              onChange={event => setUserPhone(event.target.value)}
               margin="normal"
               variant="standard"
             />
           </Grid>
           <Grid container justify="center" spacing={8}>
             <TextField
-              id="outlined-name"
+              id="aadharId"
               label="AadharId"
-              // className={classes.textField}
-              value={"hello"}
-              onChange={() => console.log("hello111")}
+              value={aadharId}
+              onChange={event => setUserAadharId(event.target.value)}
               margin="normal"
               variant="standard"
             />
+          </Grid>
+          <Grid container justify="center" spacing={8}>
+            <Button size="large">Submit</Button>
           </Grid>
         </Grid>
       </Grid>
