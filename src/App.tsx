@@ -1,22 +1,16 @@
-import * as React from 'react';
-import './App.css';
+import React, { SFC, Fragment } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
+import { BaseContainer } from "./app/containers/BaseContainer";
+import { SignupContainer } from "./app/containers/SignupContainer";
 
-import logo from './logo.svg';
+const AppComponent: SFC = () => (
+  <Router basename="/swatkats">
+    <Fragment>
+      <Route exact path="/" component={BaseContainer} />
+      <Route exact path="/signup" component={SignupContainer} />
+    </Fragment>
+  </Router>
+);
 
-class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
-
-export default App;
+export const App = AppComponent;
