@@ -1,55 +1,64 @@
 import React, { SFC, Fragment } from "react";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import {
+  Grid,
+  Typography,
+  Button,
+  CardMedia,
+  CardContent,
+  CardActions,
+  CardActionArea,
+  Card
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const styles = {
   card: {
     maxWidth: 345
   },
   media: {
-    height: 140
+    height: 100
   }
 };
 
 export const ArticleListComponent: SFC<{}> = () => {
   return (
     <Fragment>
-      {[1, 2, 3, 4, 5, 6].map(e => (
-        <Fragment>
-          <Card style={styles.card}>
-            <CardActionArea>
-              <CardMedia
-                style={styles.media}
-                image="https://www.artistsnetwork.com/wp-content/uploads/importedmedia/Drawing-People-Head-proportions-300x177.jpg"
-                title="Contemplative Reptile"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
-                </Typography>
-                <Typography component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary">
-                Share
-              </Button>
-              <Button size="small" color="primary">
-                Learn More
-              </Button>
-            </CardActions>
-          </Card>
-          <br />
-        </Fragment>
-      ))}
+      <Grid container spacing={24}>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((e, i) => (
+          <Fragment>
+            <Grid item xs={3}>
+              <Card>
+                <CardActionArea>
+                  <CardMedia
+                    style={styles.media}
+                    image="https://www.artistsnetwork.com/wp-content/uploads/importedmedia/Drawing-People-Head-proportions-300x177.jpg"
+                    title="Contemplative Reptile"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Article-{i + 1}
+                    </Typography>
+                    <Typography component="p">
+                      Here we will be displaying few detail highlights for
+                      article {i + 1}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    Share
+                  </Button>
+                  <Link to={`/article`}>
+                    <Button size="small" color="primary">
+                      Learn More
+                    </Button>
+                  </Link>
+                </CardActions>
+              </Card>
+            </Grid>
+          </Fragment>
+        ))}
+      </Grid>
     </Fragment>
   );
 };

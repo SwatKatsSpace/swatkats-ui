@@ -1,33 +1,56 @@
 import React, { SFC, Fragment } from "react";
-import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-
-const styles = {
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  formControl: {
-    margin: "10px"
-  }
-};
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 
 export const ArticleComponent: SFC<{}> = () => {
   return (
     <Fragment>
-      <FormControl style={styles.formControl}>
-        <InputLabel htmlFor="component-simple">Name</InputLabel>
-        <Input
-          id="component-simple"
-          value={""}
-          onChange={() => console.log("hello")}
-        />
-        <FormHelperText id="component-helper-text">
-          Some important helper text
-        </FormHelperText>
-      </FormControl>
+      <Grid container spacing={16}>
+        <Grid item xs={6}>
+          <TextField
+            id="name"
+            label="Name"
+            value={""}
+            onChange={event => console.log(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="email"
+            label="Email"
+            value={""}
+            onChange={event => console.log(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="phone"
+            label="Phone"
+            value={""}
+            onChange={event => console.log(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="aadharId"
+            label="AadharId"
+            value={""}
+            onChange={event => console.log(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+      </Grid>
     </Fragment>
   );
 };

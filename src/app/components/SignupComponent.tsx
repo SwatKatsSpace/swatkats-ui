@@ -2,6 +2,7 @@ import React, { SFC, Fragment } from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 export const SignupComponent: SFC<{
   name: string;
@@ -25,52 +26,56 @@ export const SignupComponent: SFC<{
   return (
     <Fragment>
       <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Grid container justify="center" spacing={8}>
-            <TextField
-              id="name"
-              label="Name"
-              value={name}
-              onChange={event => setUserName(event.target.value)}
-              margin="normal"
-              variant="standard"
-            />
-          </Grid>
-          <Grid container justify="center" spacing={8}>
-            <TextField
-              id="email"
-              label="Email"
-              value={email}
-              onChange={event => setUserEmail(event.target.value)}
-              margin="normal"
-              variant="standard"
-            />
-          </Grid>
-          <Grid container justify="center" spacing={8}>
-            <TextField
-              id="phone"
-              label="Phone"
-              value={phone}
-              onChange={event => setUserPhone(event.target.value)}
-              margin="normal"
-              variant="standard"
-            />
-          </Grid>
-          <Grid container justify="center" spacing={8}>
-            <TextField
-              id="aadharId"
-              label="AadharId"
-              value={aadharId}
-              onChange={event => setUserAadharId(event.target.value)}
-              margin="normal"
-              variant="standard"
-            />
-          </Grid>
-          <Grid container justify="center" spacing={8}>
-            <Button size="large" color="primary">
+        <Grid item xs={6}>
+          <TextField
+            id="name"
+            label="Name"
+            value={name}
+            onChange={event => setUserName(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="email"
+            label="Email"
+            value={email}
+            onChange={event => setUserEmail(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="phone"
+            label="Phone"
+            value={phone}
+            onChange={event => setUserPhone(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="aadharId"
+            label="AadharId"
+            value={aadharId}
+            onChange={event => setUserAadharId(event.target.value)}
+            margin="normal"
+            fullWidth={true}
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={6} justify="center">
+          <Link to={`/list`}>
+            <Button variant="contained" size="large" color="default">
               Submit
             </Button>
-          </Grid>
+          </Link>
         </Grid>
       </Grid>
     </Fragment>

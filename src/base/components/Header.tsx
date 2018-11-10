@@ -1,34 +1,36 @@
-import React, { Fragment, Component } from "react";
-// import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import React, { Component } from "react";
+import { Button, Typography, Toolbar, AppBar } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
-// const styles = {
-//   root: {
-//     flexGrow: 1
-//   }
-// };
+const styles = {
+  root: {
+    flexGrow: 1
+  },
+  grow: {
+    flexGrow: 1
+  }
+};
 
 export class Header extends Component {
   render() {
     return (
-      <Fragment>
-        <AppBar position="static" color="default">
+      <div style={styles.root}>
+        <AppBar position="fixed">
           <Toolbar>
-            <Typography variant="h6" color="inherit">
-              Swatkats work in progress
+            <Typography variant="h6" color="inherit" style={styles.grow}>
+              Swatkats
             </Typography>
+            <Link to={`/signup`}>
+              <Button variant="contained" color="default">
+                Signup
+              </Button>
+            </Link>
           </Toolbar>
         </AppBar>
         <br />
-      </Fragment>
+        <br />
+        <br />
+      </div>
     );
   }
 }
-
-// SimpleAppBar.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
-
-// export default withStyles(styles)(Header);
