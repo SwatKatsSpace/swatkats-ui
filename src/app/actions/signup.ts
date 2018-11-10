@@ -1,7 +1,16 @@
-import { SwatkatsActionType, SwatkatsActionCreator } from "./types";
+import {
+  SwatkatsActionType,
+  SwatkatsActionCreator,
+  SwatkatsAsyncActionCreator
+} from "./types";
+import { fetchUserInfo } from "../services/signup";
 
-export const fetchUser = async (): Promise<UserResponse> => {
-  return fetch(`http://localhost:8080/swatkats/user`).then(response => response.json());
+export const fetchUser = (): SwatkatsAsyncActionCreator => async (
+  dispatch,
+  getState
+) => {
+  const userResponse: UserResponse = await fetchUserInfo();
+  console.log(userResponse);
 };
 
 export const setUserName: SwatkatsActionCreator = (name: string) => ({

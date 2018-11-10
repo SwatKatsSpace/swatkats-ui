@@ -24,7 +24,7 @@ interface DispatchProps {
   setUserEmail: (email: string) => void;
   setUserPhone: (phone: string) => void;
   setUserAadharId: (aadharId: string) => void;
-  fetchUser(): Promise<UserResponse>;
+  fetchUser: () => void;
 }
 
 type Props = StateProps & DispatchProps;
