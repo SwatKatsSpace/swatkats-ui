@@ -21,6 +21,7 @@ export class Header extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
+        <br />
       </Fragment>
     );
   }

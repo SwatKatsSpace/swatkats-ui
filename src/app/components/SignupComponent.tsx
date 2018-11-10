@@ -67,7 +67,9 @@ export const SignupComponent: SFC<{
             />
           </Grid>
           <Grid container justify="center" spacing={8}>
-            <Button size="large">Submit</Button>
+            <Button size="large" color="primary">
+              Submit
+            </Button>
           </Grid>
         </Grid>
       </Grid>
