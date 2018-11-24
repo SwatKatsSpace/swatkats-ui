@@ -1,64 +1,38 @@
 import React, { SFC, Fragment } from "react";
-import {
-  Grid,
-  Typography,
-  Button,
-  CardMedia,
-  CardContent,
-  CardActions,
-  CardActionArea,
-  Card
-} from "@material-ui/core";
+import { Card, Icon, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const styles = {
-  card: {
-    maxWidth: 345
-  },
-  media: {
-    height: 100
-  }
-};
+const extra = (
+  <Fragment>
+    <a>
+      <Icon name="thumbs up outline" float="left" />
+      {16} Likes
+    </a>
+    <Link to={`/article`}>
+      <Button icon labelPosition="right" floated="right">
+        Know more
+        <Icon name="arrow right" />
+      </Button>
+    </Link>
+  </Fragment>
+);
 
 export const ArticleListComponent: SFC<{}> = () => {
   return (
     <Fragment>
-      <Grid container spacing={24}>
+      <Card.Group>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((e, i) => (
           <Fragment>
-            <Grid item xs={3}>
-              <Card>
-                <CardActionArea>
-                  <CardMedia
-                    style={styles.media}
-                    image="https://www.artistsnetwork.com/wp-content/uploads/importedmedia/Drawing-People-Head-proportions-300x177.jpg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Article-{i + 1}
-                    </Typography>
-                    <Typography component="p">
-                      Here we will be displaying few detail highlights for
-                      article {i + 1}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                  <Link to={`/article`}>
-                    <Button size="small" color="primary">
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardActions>
-              </Card>
-            </Grid>
+            <Card
+              image="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+              header="Patrick Dumbeldor"
+              meta="Friend"
+              description="Dumbeldor is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+              extra={extra}
+            />
           </Fragment>
         ))}
-      </Grid>
+      </Card.Group>
     </Fragment>
   );
 };

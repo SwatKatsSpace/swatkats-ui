@@ -1,56 +1,44 @@
 import React, { SFC, Fragment } from "react";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
+import { Form, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export const ArticleComponent: SFC<{}> = () => {
   return (
     <Fragment>
-      <Grid container spacing={16}>
-        <Grid item xs={6}>
-          <TextField
+      <Form>
+        <Form.Group unstackable widths={2}>
+          <Form.Input
             id="name"
             label="Name"
             value={""}
             onChange={event => console.log(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
+          <Form.Input
             id="email"
             label="Email"
             value={""}
             onChange={event => console.log(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
+        </Form.Group>
+        <Form.Group unstackable widths={2}>
+          <Form.Input
             id="phone"
             label="Phone"
             value={""}
             onChange={event => console.log(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
+          <Form.Input
             id="aadharId"
             label="AadharId"
             value={""}
             onChange={event => console.log(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-      </Grid>
+        </Form.Group>
+        <Form.Checkbox label="I agree to the Terms and Conditions" />
+        <Link to={`/list`}>
+          <Button type="submit">Submit</Button>
+        </Link>
+      </Form>
     </Fragment>
   );
 };

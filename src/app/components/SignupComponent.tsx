@@ -1,7 +1,5 @@
 import React, { SFC, Fragment } from "react";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import { Form, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export const SignupComponent: SFC<{
@@ -25,59 +23,40 @@ export const SignupComponent: SFC<{
 }) => {
   return (
     <Fragment>
-      <Grid container spacing={16}>
-        <Grid item xs={6}>
-          <TextField
+      <Form>
+        <Form.Group unstackable widths={2}>
+          <Form.Input
             id="name"
             label="Name"
             value={name}
             onChange={event => setUserName(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
+          <Form.Input
             id="email"
             label="Email"
             value={email}
             onChange={event => setUserEmail(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
+        </Form.Group>
+        <Form.Group unstackable widths={2}>
+          <Form.Input
             id="phone"
             label="Phone"
             value={phone}
             onChange={event => setUserPhone(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
+          <Form.Input
             id="aadharId"
             label="AadharId"
             value={aadharId}
             onChange={event => setUserAadharId(event.target.value)}
-            margin="normal"
-            fullWidth={true}
-            variant="standard"
           />
-        </Grid>
-        <Grid item xs={6} justify="center">
-          <Link to={`/list`}>
-            <Button variant="contained" size="large" color="default">
-              Submit
-            </Button>
-          </Link>
-        </Grid>
-      </Grid>
+        </Form.Group>
+        <Form.Checkbox label="I agree to the Terms and Conditions" />
+        <Link to={`/list`}>
+          <Button type="submit">Submit</Button>
+        </Link>
+      </Form>
     </Fragment>
   );
 };
