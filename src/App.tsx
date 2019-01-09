@@ -22,7 +22,11 @@ const AppComponent: SFC = () => (
         <Route exact path="/" component={BaseContainer} />
         <Route exact path="/signup" component={SignupContainer} />
         <Route exact path="/list" component={ArticleListContainer} />
-        <Route exact path="/article" component={ArticleContainer} />
+        <Route
+          exact
+          path="/article/:articleUuid"
+          component={ArticleContainer}
+        />
       </Fragment>
     </Router>
   </div>

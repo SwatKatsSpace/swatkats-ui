@@ -3,67 +3,54 @@ import { Header } from "../../base/components/Header";
 import { ArticleComponent } from "../components/ArticleComponent";
 import { SwatkatsActionType } from "../actions/types";
 import { Action, Dispatch, bindActionCreators } from "redux";
-import {
-  setUserName,
-  setUserEmail,
-  setUserPhone,
-  setUserAadharId,
-  fetchUser
-} from "../actions/signup";
 import { connect } from "react-redux";
+import { fetchArticle } from "../actions/article";
+import { withRouter, RouteComponentProps } from "react-router";
 
 interface StateProps {
-  name: string;
-  email: string;
-  phone: string;
-  aadharId: string;
+  selectedArticle: Article;
 }
 
 interface DispatchProps {
-  setUserName: (name: string) => void;
-  setUserEmail: (email: string) => void;
-  setUserPhone: (phone: string) => void;
-  setUserAadharId: (aadharId: string) => void;
-  fetchUser: () => void;
+  fetchArticle: (articleUuid: string) => void;
 }
 
-type Props = StateProps & DispatchProps;
+interface OwnProps extends RouteComponentProps<{ articleUuid: string }> {}
 
-class Article extends Component<Props> {
+type Props = StateProps & DispatchProps & OwnProps;
+
+class ArticleSubContainer extends Component<Props> {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.fetchArticle(this.props.match.params.articleUuid);
   }
 
   render() {
+    const { selectedArticle } = this.props;
     return (
       <Fragment>
         <Header />
-        <ArticleComponent />
+        <ArticleComponent selectedArticle={selectedArticle} />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = (state: SignUpState): StateProps => {
-  const { name, email, phone, aadharId } = state;
+const mapStateToProps = (state: AppState): StateProps => {
+  const { article } = state;
+  const selectedArticle = article.selectedArticle;
 
   return {
-    name,
-    email,
-    phone,
-    aadharId
+    selectedArticle
   };
 };
 
 const mapDispatchToProps = (
   dispatch: Dispatch<Action<SwatkatsActionType>>
-): DispatchProps =>
-  bindActionCreators(
-    { setUserName, setUserEmail, setUserPhone, setUserAadharId, fetchUser },
-    dispatch
-  );
+): DispatchProps => bindActionCreators({ fetchArticle }, dispatch);
 
-export const ArticleContainer = connect<StateProps, DispatchProps, {}, {}>(
-  mapStateToProps,
-  mapDispatchToProps
-)(Article);
+export const ArticleContainer = withRouter(
+  connect<StateProps, DispatchProps, OwnProps, {}>(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ArticleSubContainer)
+);

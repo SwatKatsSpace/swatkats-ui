@@ -8,6 +8,7 @@ interface SignUpState {
 interface ArticleState {
   loading: boolean;
   listOfArticle: Array<Article>;
+  selectedArticle: Article;
 }
 
 interface AppState {

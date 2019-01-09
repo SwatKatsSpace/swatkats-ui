@@ -3,7 +3,7 @@ import {
   SwatkatsActionCreator,
   SwatkatsAsyncActionCreator
 } from "./types";
-import { apiFetchListOfArticle } from "../services/articles";
+import { apiFetchListOfArticle, apiFetchArticle } from "../services/articles";
 
 export const fetchListOfArticle = (): SwatkatsAsyncActionCreator => async (
   dispatch,
@@ -20,5 +20,20 @@ export const setListOfArticle: SwatkatsActionCreator = (
   type: SwatkatsActionType.setListOfArticle,
   payload: {
     listOfArticle
+  }
+});
+
+export const fetchArticle = (
+  articleUuid: string
+): SwatkatsAsyncActionCreator => async (dispatch, getState) => {
+  const article: Article = await apiFetchArticle({ articleUuid });
+  
+  dispatch(setArticle(article));
+};
+
+export const setArticle: SwatkatsActionCreator = (article: Article) => ({
+  type: SwatkatsActionType.setArticle,
+  payload: {
+    article
   }
 });

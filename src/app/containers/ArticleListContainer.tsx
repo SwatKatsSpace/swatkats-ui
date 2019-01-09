@@ -5,6 +5,7 @@ import { SwatkatsActionType } from "../actions/types";
 import { Action, Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchListOfArticle } from "../actions/article";
+import { Message } from "semantic-ui-react";
 
 interface StateProps {
   listOfArticle: Array<Article>;
@@ -23,10 +24,20 @@ class ArticleList extends Component<Props> {
 
   render() {
     const { listOfArticle } = this.props;
+
     return (
       <Fragment>
         <Header />
-        <ArticleListComponent listOfArticle={listOfArticle} />
+        {listOfArticle.length > 0 ? (
+          <ArticleListComponent listOfArticle={listOfArticle} />
+        ) : (
+          <Message
+            size="large"
+            icon="warning"
+            header="Cannot establish connection to server?"
+            content="Make sure your backend server and internet is up"
+          />
+        )}
       </Fragment>
     );
   }
@@ -35,7 +46,7 @@ class ArticleList extends Component<Props> {
 const mapStateToProps = (state: AppState): StateProps => {
   const { article } = state;
   const listOfArticle = article.listOfArticle;
-  
+
   return {
     listOfArticle
   };
