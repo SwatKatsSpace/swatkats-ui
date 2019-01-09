@@ -3,13 +3,17 @@ import {
   SwatkatsActionCreator,
   SwatkatsAsyncActionCreator
 } from "./types";
-import { fetchUserInfo } from "../services/signup";
+import { fetchUserInfo, saveUserDetails } from "../services/signup";
 
 export const fetchUser = (): SwatkatsAsyncActionCreator => async (
   dispatch,
   getState
 ) => {
   const userResponse: UserResponse = await fetchUserInfo();
+  dispatch(setUserName("ayush"));
+  dispatch(setUserEmail("ss"));
+  dispatch(setUserPhone("sass"));
+  dispatch(setUserAadharId("aassa"));
   console.log(userResponse);
 };
 
@@ -40,3 +44,13 @@ export const setUserAadharId: SwatkatsActionCreator = (aadharId: string) => ({
     aadharId
   }
 });
+
+export const save = (): SwatkatsAsyncActionCreator => async (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const user = state.user;
+  const userResponse: UserResponse = await saveUserDetails(user);
+  console.log(userResponse);
+};

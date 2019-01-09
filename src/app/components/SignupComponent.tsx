@@ -11,6 +11,7 @@ export const SignupComponent: SFC<{
   setUserEmail: (email: string) => void;
   setUserPhone: (phone: string) => void;
   setUserAadharId: (aadharId: string) => void;
+  save: () => void;
 }> = ({
   name,
   email,
@@ -19,7 +20,8 @@ export const SignupComponent: SFC<{
   setUserName,
   setUserEmail,
   setUserPhone,
-  setUserAadharId
+  setUserAadharId,
+  save
 }) => {
   return (
     <Fragment>
@@ -66,7 +68,9 @@ export const SignupComponent: SFC<{
               </Form.Group>
               <Form.Checkbox label="I agree to the Terms and Conditions" />
               <Link to={`/list`}>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" onClick={() => save}>
+                  Submit
+                </Button>
               </Link>
             </Form>
           </Segment>

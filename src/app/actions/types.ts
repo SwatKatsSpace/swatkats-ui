@@ -6,6 +6,7 @@ export enum SwatkatsActionType {
   setUserEmail = "@swatkats/setUserEmail",
   setUserPhone = "@swatkats/setUserPhone",
   setUserAadharId = "@swatkats/setUserAadharId",
+  setListOfArticle = "@swatkats/setListOfArticle"
 }
 
 export interface SwatkatsAction extends Action<SwatkatsActionType> {
@@ -15,9 +16,10 @@ export interface SwatkatsAction extends Action<SwatkatsActionType> {
 }
 
 export type SwatkatsActionCreator = ActionCreator<SwatkatsAction>;
+
 export type SwatkatsAsyncActionCreator = ThunkAction<
   void,
-  {},
+  AppState,
   void,
   SwatkatsAction
 >;

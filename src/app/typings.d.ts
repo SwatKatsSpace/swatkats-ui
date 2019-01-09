@@ -8,3 +8,17 @@ interface UserResponse {
   phone: string;
   aadharId: string;
 }
+
+interface Article {
+  uuid: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  aadharId: string;
+  panId: string;
+  image: string;
+  relation: string;
+  description: string;
+  likes: string;
+}

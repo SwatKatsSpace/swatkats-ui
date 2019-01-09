@@ -1,12 +1,10 @@
-export const fetchUserInfo = async (): Promise<UserResponse> => {
+export const apiFetchListOfArticle = async (): Promise<Array<Article>> => {
   let headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "*",
-    "Access-Control-Request-Headers": "*"
+    "Access-Control-Allow-Origin": "*"
   });
-  return fetch(`http://localhost:8080/swatkats/users`, {
+  return fetch(`http://localhost:8080/swatkats/articles`, {
     method: "GET",
     headers
   }).then(response => {

@@ -8,7 +8,8 @@ import {
   setUserEmail,
   setUserPhone,
   setUserAadharId,
-  fetchUser
+  fetchUser,
+  save
 } from "../actions/signup";
 import { connect } from "react-redux";
 
@@ -25,6 +26,7 @@ interface DispatchProps {
   setUserPhone: (phone: string) => void;
   setUserAadharId: (aadharId: string) => void;
   fetchUser: () => void;
+  save: () => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -58,14 +60,19 @@ class Signup extends Component<Props> {
           setUserEmail={setUserEmail}
           setUserPhone={setUserPhone}
           setUserAadharId={setUserAadharId}
+          save={save}
         />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = (state: SignUpState): StateProps => {
-  const { name, email, phone, aadharId } = state;
+const mapStateToProps = (state: AppState): StateProps => {
+  // const { name, email, phone, aadharId } = state.user;
+  const name = "ayush";
+  const email = "saas";
+  const phone = "211";
+  const aadharId = "sssd";
 
   return {
     name,
@@ -79,7 +86,14 @@ const mapDispatchToProps = (
   dispatch: Dispatch<Action<SwatkatsActionType>>
 ): DispatchProps =>
   bindActionCreators(
-    { setUserName, setUserEmail, setUserPhone, setUserAadharId, fetchUser },
+    {
+      setUserName,
+      setUserEmail,
+      setUserPhone,
+      setUserAadharId,
+      fetchUser,
+      save
+    },
     dispatch
   );
 

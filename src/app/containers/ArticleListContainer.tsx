@@ -3,55 +3,41 @@ import { Header } from "../../base/components/Header";
 import { ArticleListComponent } from "../components/ArticleListComponent";
 import { SwatkatsActionType } from "../actions/types";
 import { Action, Dispatch, bindActionCreators } from "redux";
-import {
-  setUserName,
-  setUserEmail,
-  setUserPhone,
-  setUserAadharId,
-  fetchUser
-} from "../actions/signup";
 import { connect } from "react-redux";
+import { fetchListOfArticle } from "../actions/article";
 
 interface StateProps {
-  name: string;
-  email: string;
-  phone: string;
-  aadharId: string;
+  listOfArticle: Array<Article>;
 }
 
 interface DispatchProps {
-  setUserName: (name: string) => void;
-  setUserEmail: (email: string) => void;
-  setUserPhone: (phone: string) => void;
-  setUserAadharId: (aadharId: string) => void;
-  fetchUser: () => void;
+  fetchListOfArticle: () => void;
 }
 
 type Props = StateProps & DispatchProps;
 
 class ArticleList extends Component<Props> {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.fetchListOfArticle();
   }
 
   render() {
+    const { listOfArticle } = this.props;
     return (
       <Fragment>
         <Header />
-        <ArticleListComponent />
+        <ArticleListComponent listOfArticle={listOfArticle} />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = (state: SignUpState): StateProps => {
-  const { name, email, phone, aadharId } = state;
-
+const mapStateToProps = (state: AppState): StateProps => {
+  const { article } = state;
+  const listOfArticle = article.listOfArticle;
+  
   return {
-    name,
-    email,
-    phone,
-    aadharId
+    listOfArticle
   };
 };
 
@@ -59,7 +45,9 @@ const mapDispatchToProps = (
   dispatch: Dispatch<Action<SwatkatsActionType>>
 ): DispatchProps =>
   bindActionCreators(
-    { setUserName, setUserEmail, setUserPhone, setUserAadharId, fetchUser },
+    {
+      fetchListOfArticle
+    },
     dispatch
   );
 
