@@ -9,12 +9,12 @@ export const fetchUser = (): SwatkatsAsyncActionCreator => async (
   dispatch,
   getState
 ) => {
-  const userResponse: UserResponse = await fetchUserInfo();
-  dispatch(setUserName("ayush"));
-  dispatch(setUserEmail("ss"));
-  dispatch(setUserPhone("sass"));
-  dispatch(setUserAadharId("aassa"));
-  console.log(userResponse);
+  const user: User = await fetchUserInfo();
+
+  dispatch(setUserName(user.name));
+  dispatch(setUserEmail(user.email));
+  dispatch(setUserPhone(user.phone));
+  dispatch(setUserAadharId(user.aadharId));
 };
 
 export const setUserName: SwatkatsActionCreator = (name: string) => ({
@@ -45,12 +45,34 @@ export const setUserAadharId: SwatkatsActionCreator = (aadharId: string) => ({
   }
 });
 
-export const save = (): SwatkatsAsyncActionCreator => async (
+export const setUserPanId: SwatkatsActionCreator = (panId: string) => ({
+  type: SwatkatsActionType.setUserPanId,
+  payload: {
+    panId
+  }
+});
+export const setUserPassword1: SwatkatsActionCreator = (password1: string) => ({
+  type: SwatkatsActionType.setUserPassword1,
+  payload: {
+    password1
+  }
+});
+export const setUserPassword2: SwatkatsActionCreator = (password2: string) => ({
+  type: SwatkatsActionType.setUserPassword2,
+  payload: {
+    password2
+  }
+});
+
+export const createUser = (): SwatkatsAsyncActionCreator => async (
   dispatch,
   getState
 ) => {
   const state = getState();
-  const user = state.user;
-  const userResponse: UserResponse = await saveUserDetails(user);
-  console.log(userResponse);
+
+  const user = state.user.user;
+
+  const response = await saveUserDetails(user);
+
+  console.log(response);
 };

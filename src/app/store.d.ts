@@ -1,8 +1,7 @@
-interface SignUpState {
-  name: string;
-  email: string;
-  phone: string;
-  aadharId: string;
+interface UserState {
+  loading: boolean;
+  error: boolean;
+  user: User;
 }
 
 interface ArticleState {
@@ -12,6 +11,6 @@ interface ArticleState {
 }
 
 interface AppState {
-  user: SignUpState;
+  user: UserState;
   article: ArticleState;
 }

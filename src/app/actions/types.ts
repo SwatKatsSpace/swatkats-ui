@@ -6,6 +6,11 @@ export enum SwatkatsActionType {
   setUserEmail = "@swatkats/setUserEmail",
   setUserPhone = "@swatkats/setUserPhone",
   setUserAadharId = "@swatkats/setUserAadharId",
+  setUserPanId = "@swatkats/setUserPanId",
+  setUserPassword1 = "@swatkats/setUserPassword1",
+  setUserPassword2 = "@swatkats/setUserPassword2",
+  setUser = "@swatkats/setUser",
+
   setListOfArticle = "@swatkats/setListOfArticle",
   setArticle = "@swatkats/setArticle"
 }

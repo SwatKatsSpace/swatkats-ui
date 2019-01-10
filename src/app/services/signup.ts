@@ -1,4 +1,4 @@
-export const fetchUserInfo = async (): Promise<UserResponse> => {
+export const fetchUserInfo = async (): Promise<User> => {
   let headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -14,17 +14,13 @@ export const fetchUserInfo = async (): Promise<UserResponse> => {
   });
 };
 
-export const saveUserDetails = async (
-  user: UserResponse
-): Promise<UserResponse> => {
+export const saveUserDetails = async (user: User): Promise<string> => {
   let headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
     "Access-Control-Allow-Origin": "*"
-    // "Access-Control-Allow-Headers": "*",
-    // "Access-Control-Request-Headers": "*"
   });
-  return fetch(`http://localhost:8080/swatkats/user`, {
+  return fetch(`http://localhost:8080/swatkats/users`, {
     method: "POST",
     headers,
     body: JSON.stringify(user)

@@ -8,9 +8,11 @@ import {
   setUserEmail,
   setUserPhone,
   setUserAadharId,
-  fetchUser,
-  save
-} from "../actions/signup";
+  setUserPanId,
+  setUserPassword1,
+  setUserPassword2,
+  createUser
+} from "../actions/user";
 import { connect } from "react-redux";
 
 interface StateProps {
@@ -18,6 +20,8 @@ interface StateProps {
   email: string;
   phone: string;
   aadharId: string;
+  panId: string;
+  password: string;
 }
 
 interface DispatchProps {
@@ -25,27 +29,32 @@ interface DispatchProps {
   setUserEmail: (email: string) => void;
   setUserPhone: (phone: string) => void;
   setUserAadharId: (aadharId: string) => void;
-  fetchUser: () => void;
-  save: () => void;
+  setUserPanId: (panId: string) => void;
+  setUserPassword1: (password1: string) => void;
+  setUserPassword2: (password2: string) => void;
+
+  createUser: () => void;
 }
 
 type Props = StateProps & DispatchProps;
 
 class Signup extends Component<Props> {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-
   render() {
     const {
       name,
       email,
       phone,
       aadharId,
+      panId,
+      password,
       setUserName,
       setUserEmail,
       setUserPhone,
-      setUserAadharId
+      setUserAadharId,
+      setUserPanId,
+      setUserPassword1,
+      setUserPassword2,
+      createUser
     } = this.props;
 
     return (
@@ -56,11 +65,16 @@ class Signup extends Component<Props> {
           email={email}
           phone={phone}
           aadharId={aadharId}
+          panId={panId}
+          password={password}
           setUserName={setUserName}
           setUserEmail={setUserEmail}
           setUserPhone={setUserPhone}
           setUserAadharId={setUserAadharId}
-          save={save}
+          setUserPanId={setUserPanId}
+          setUserPassword1={setUserPassword1}
+          setUserPassword2={setUserPassword2}
+          createUser={createUser}
         />
       </Fragment>
     );
@@ -68,17 +82,15 @@ class Signup extends Component<Props> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-  // const { name, email, phone, aadharId } = state.user;
-  const name = "ayush";
-  const email = "saas";
-  const phone = "211";
-  const aadharId = "sssd";
+  const { name, email, phone, aadharId, panId, password } = state.user.user;
 
   return {
     name,
     email,
     phone,
-    aadharId
+    aadharId,
+    panId,
+    password
   };
 };
 
@@ -91,8 +103,10 @@ const mapDispatchToProps = (
       setUserEmail,
       setUserPhone,
       setUserAadharId,
-      fetchUser,
-      save
+      setUserPanId,
+      setUserPassword1,
+      setUserPassword2,
+      createUser
     },
     dispatch
   );
