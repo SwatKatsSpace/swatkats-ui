@@ -12,7 +12,18 @@ export enum SwatkatsActionType {
   setUser = "@swatkats/setUser",
 
   setListOfArticle = "@swatkats/setListOfArticle",
-  setArticle = "@swatkats/setArticle"
+  setArticle = "@swatkats/setArticle",
+
+  setArticleFirstName = "@swatkats/setArticleFirstName",
+  setArticleLastName = "@swatkats/setArticleLastName",
+  setArticleEmail = "@swatkats/setArticleEmail",
+  setArticlePhone = "@swatkats/setArticlePhone",
+  setArticleAadharId = "@swatkats/setArticleAadharId",
+  setArticlePanId = "@swatkats/setArticlePanId",
+  setArticleImage = "@swatkats/setArticleImage",
+  setArticleRelation = "@swatkats/setArticleRelation",
+  setArticleDescription = "@swatkats/setArticleDescription",
+  setArticleLikes = "@swatkats/setArticleLikes"
 }
 
 export interface SwatkatsAction extends Action<SwatkatsActionType> {

@@ -5,6 +5,7 @@ import { BaseContainer } from "./app/containers/BaseContainer";
 import { SignupContainer } from "./app/containers/SignupContainer";
 import { ArticleListContainer } from "./app/containers/ArticleListContainer";
 import { ArticleContainer } from "./app/containers/ArticleContainer";
+import { ArticleCreateContainer } from "./app/containers/ArticleCreateContainer";
 
 const styles = {
   root: {
@@ -27,6 +28,7 @@ const AppComponent: SFC = () => (
           path="/article/:articleUuid"
           component={ArticleContainer}
         />
+        <Route exact path="/createarticle" component={ArticleCreateContainer} />
       </Fragment>
     </Router>
   </div>

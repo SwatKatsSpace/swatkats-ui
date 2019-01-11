@@ -15,13 +15,18 @@ export class Header extends Component {
             subheader="under construction"
             icon="braille"
           />
+          <Link to={`/createarticle`}>
+            <Button size="big" color="brown" content="Brown">
+              Create new article
+            </Button>
+          </Link>
           <Button.Group floated="right">
             <Button color="green" content="Green">
               Login
             </Button>
             <Button.Or />
             <Link to={`/signup`}>
-              <Button color="brown" content="Brown">
+              <Button basic color="green" content="Green">
                 SignUp
               </Button>
             </Link>

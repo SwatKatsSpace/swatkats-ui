@@ -39,7 +39,7 @@ export const SignupComponent: SFC<{
       <Grid columns={16}>
         <Grid.Column width={4} />
         <Grid.Column width={8}>
-          <Segment centered={true}>
+          <Segment centered>
             <Form>
               <Form.Input
                 id="name"

@@ -29,3 +29,16 @@ export const apiFetchArticle = async ({
     return response.json();
   });
 };
+
+export const apiCreateArticle = async (article: Article): Promise<string> => {
+  let headers = new Headers({
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    "Access-Control-Allow-Origin": "*"
+  });
+  return fetch(`http://localhost:8080/swatkats/articles`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(article)
+  }).then(response => response.json());
+};
