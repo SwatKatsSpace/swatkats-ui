@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-scripts-ts": "3.1.0",
     "react-router-dom": "4.3.1",
     "redux": "^4.0.1",
     "react-redux": "^5.1.0",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "0.83.0",
+    "semantic-ui-react": "0.85.0",
     "semantic-ui-css": "2.4.1"
   },
   "scripts": {
@@ -20,12 +20,12 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.3",
-    "@types/react": "^16.7.1",
-    "@types/react-dom": "^16.0.9",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^10.12.21",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-redux": "^6.0.9",
-    "typescript": "^3.1.6"
+    "typescript": "^3.3.1"
   }
 }

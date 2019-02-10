@@ -35,14 +35,7 @@ export const fetchArticle = (
   dispatch(setArticle(article));
 };
 
-export const setArticle: SwatkatsActionCreator = (article: Article) => ({
-  type: SwatkatsActionType.setArticle,
-  payload: {
-    article
-  }
-});
-
-export const createArticle = (): SwatkatsAsyncActionCreator => async (
+export const create = (): SwatkatsAsyncActionCreator => async (
   dispatch,
   getState
 ) => {
@@ -55,80 +48,77 @@ export const createArticle = (): SwatkatsAsyncActionCreator => async (
   console.log(response);
 };
 
-export const setArticleFirstName: SwatkatsActionCreator = (
-  firstName: string
-) => ({
+export const setArticle: SwatkatsActionCreator = (article: Article) => ({
+  type: SwatkatsActionType.setArticle,
+  payload: {
+    article
+  }
+});
+
+export const setFirstName: SwatkatsActionCreator = (firstName: string) => ({
   type: SwatkatsActionType.setArticleFirstName,
   payload: {
     firstName
   }
 });
 
-export const setArticleLastName: SwatkatsActionCreator = (
-  lastName: string
-) => ({
+export const setLastName: SwatkatsActionCreator = (lastName: string) => ({
   type: SwatkatsActionType.setArticleLastName,
   payload: {
     lastName
   }
 });
 
-export const setArticleEmail: SwatkatsActionCreator = (email: string) => ({
+export const setEmail: SwatkatsActionCreator = (email: string) => ({
   type: SwatkatsActionType.setArticleEmail,
   payload: {
     email
   }
 });
 
-export const setArticlePhone: SwatkatsActionCreator = (phone: string) => ({
+export const setPhone: SwatkatsActionCreator = (phone: string) => ({
   type: SwatkatsActionType.setArticlePhone,
   payload: {
     phone
   }
 });
 
-export const setArticleAadharId: SwatkatsActionCreator = (
-  aadharId: string
-) => ({
+export const setAadharId: SwatkatsActionCreator = (aadharId: string) => ({
   type: SwatkatsActionType.setArticleAadharId,
   payload: {
     aadharId
   }
 });
 
-export const setArticlePanId: SwatkatsActionCreator = (panId: string) => ({
+export const setPanId: SwatkatsActionCreator = (panId: string) => ({
   type: SwatkatsActionType.setArticlePanId,
   payload: {
     panId
   }
 });
 
-export const setArticleImage: SwatkatsActionCreator = (image: string) => ({
+export const setImage: SwatkatsActionCreator = (image: string) => ({
   type: SwatkatsActionType.setArticleImage,
   payload: {
     image
   }
 });
 
-export const setArticleRelation: SwatkatsActionCreator = (
-  relation: string
-) => ({
+export const setRelation: SwatkatsActionCreator = (relation: string) => ({
   type: SwatkatsActionType.setArticleRelation,
   payload: {
     relation
   }
 });
 
-export const setArticleDescription: SwatkatsActionCreator = (
-  description: string
-) => ({
+export const setDescription: SwatkatsActionCreator = (description: string) => ({
   type: SwatkatsActionType.setArticleDescription,
   payload: {
     description
   }
 });
 
-export const setArticleLikes: SwatkatsActionCreator = (likes: string) => ({
+export const setLikes: SwatkatsActionCreator = (likes: string) => ({
   type: SwatkatsActionType.setArticleLikes,
   payload: {
     likes

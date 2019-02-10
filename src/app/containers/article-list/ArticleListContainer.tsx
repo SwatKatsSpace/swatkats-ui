@@ -1,11 +1,12 @@
 import React, { Fragment, Component } from "react";
-import { Header } from "../../base/components/Header";
-import { ArticleListComponent } from "../components/ArticleListComponent";
-import { SwatkatsActionType } from "../actions/types";
+import { Header } from "../../../base/components/Header";
+import { ArticleListComponent } from "../../components/ArticleListComponent";
+import { SwatkatsActionType } from "../../actions/types";
 import { Action, Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { fetchListOfArticle } from "../actions/article";
+import { fetchListOfArticle } from "../../actions/article";
 import { Message } from "semantic-ui-react";
+import "./ArticleListContainer.css";
 
 interface StateProps {
   listOfArticle: Array<Article>;
@@ -28,16 +29,18 @@ class ArticleList extends Component<Props> {
     return (
       <Fragment>
         <Header />
-        {listOfArticle.length > 0 ? (
-          <ArticleListComponent listOfArticle={listOfArticle} />
-        ) : (
-          <Message
-            size="large"
-            icon="warning"
-            header="Cannot establish connection to server?"
-            content="Make sure your backend server and internet is up"
-          />
-        )}
+        <div className="article-list-container">
+          {listOfArticle.length > 0 ? (
+            <ArticleListComponent listOfArticle={listOfArticle} />
+          ) : (
+            <Message
+              size="large"
+              icon="warning"
+              header="Cannot establish connection to server?"
+              content="Make sure your backend server and internet is up"
+            />
+          )}
+        </div>
       </Fragment>
     );
   }

@@ -1,5 +1,5 @@
 import React, { SFC, Fragment } from "react";
-import { Form, Button, Segment, Grid } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 // import { Link } from "react-router-dom";
 
 export const ArticleCreateComponent: SFC<{
@@ -13,17 +13,17 @@ export const ArticleCreateComponent: SFC<{
   relation: string;
   description: string;
   likes: string;
-  setArticleFirstName: (firstName: string) => void;
-  setArticleLastName: (lastName: string) => void;
-  setArticleEmail: (email: string) => void;
-  setArticlePhone: (phone: string) => void;
-  setArticleAadharId: (aadharId: string) => void;
-  setArticlePanId: (panId: string) => void;
-  setArticleImage: (image: string) => void;
-  setArticleRelation: (relation: string) => void;
-  setArticleDescription: (description: string) => void;
-  setArticleLikes: (likes: string) => void;
-  createArticle: () => void;
+  setFirstName: (firstName: string) => void;
+  setLastName: (lastName: string) => void;
+  setEmail: (email: string) => void;
+  setPhone: (phone: string) => void;
+  setAadharId: (aadharId: string) => void;
+  setPanId: (panId: string) => void;
+  setImage: (image: string) => void;
+  setRelation: (relation: string) => void;
+  setDescription: (description: string) => void;
+  setLikes: (likes: string) => void;
+  create: () => void;
 }> = ({
   firstName,
   lastName,
@@ -35,106 +35,111 @@ export const ArticleCreateComponent: SFC<{
   relation,
   description,
   likes,
-  setArticleFirstName,
-  setArticleLastName,
-  setArticleEmail,
-  setArticlePhone,
-  setArticleAadharId,
-  setArticlePanId,
-  setArticleImage,
-  setArticleRelation,
-  setArticleDescription,
-  setArticleLikes,
-  createArticle
+  setFirstName,
+  setLastName,
+  setEmail,
+  setPhone,
+  setAadharId,
+  setPanId,
+  setImage,
+  setRelation,
+  setDescription,
+  setLikes,
+  create
 }) => {
+  const listOfReation = [
+    {
+      key: "SERVANT",
+      text: "Servant",
+      value: "Servant",
+      description: "This person works for me"
+    },
+    {
+      key: "ACQUAINTANCE",
+      text: "Acquaintance",
+      value: "Acquaintance",
+      description: "I have this person still do not know well "
+    }
+  ];
   return (
     <Fragment>
-      <Grid columns={16}>
-        <Grid.Column width={4} />
-        <Grid.Column width={8}>
-          <Segment centered>
-            <Form>
-              <Form.Input
-                id="firstName"
-                label="FirstName"
-                value={firstName}
-                onChange={event => setArticleFirstName(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="lastName"
-                label="LastName"
-                value={lastName}
-                onChange={event => setArticleLastName(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="email"
-                label="Email"
-                value={email}
-                onChange={event => setArticleEmail(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="phone"
-                label="Phone"
-                value={phone}
-                onChange={event => setArticlePhone(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="aadharId"
-                label="AadharId"
-                value={aadharId}
-                onChange={event => setArticleAadharId(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="panId"
-                label="PanId"
-                value={panId}
-                onChange={event => setArticlePanId(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="image"
-                label="Image"
-                value={image}
-                onChange={event => setArticleImage(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="relation"
-                label="Relation"
-                value={relation}
-                onChange={event => setArticleRelation(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="description"
-                label="Description"
-                value={description}
-                onChange={event => setArticleDescription(event.target.value)}
-                width={16}
-              />
-              <Form.Input
-                id="likes"
-                label="Likes"
-                value={likes}
-                onChange={event => setArticleLikes(event.target.value)}
-                width={16}
-              />
-              <Form.Checkbox label="I agree to the Terms and Conditions" />
-              {/* <Link to={`/list`}> */}
-              <Button type="submit" onClick={() => createArticle()}>
-                Submit
-              </Button>
-              {/* </Link> */}
-            </Form>
-          </Segment>
-        </Grid.Column>
-        <Grid.Column width={4} />
-      </Grid>
+      <Form size="small">
+        <Form.Input
+          value={firstName}
+          onChange={event => setFirstName(event.target.value)}
+          fluid
+          id="firstName"
+          label="FirstName"
+        />
+        <Form.Input
+          value={lastName}
+          onChange={event => setLastName(event.target.value)}
+          fluid
+          id="lastName"
+          label="LastName"
+        />
+        <Form.Input
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+          fluid
+          id="email"
+          label="Email"
+        />
+        <Form.Input
+          value={phone}
+          onChange={event => setPhone(event.target.value)}
+          fluid
+          id="phone"
+          label="Phone"
+        />
+        <Form.Input
+          value={aadharId}
+          onChange={event => setAadharId(event.target.value)}
+          fluid
+          id="aadharId"
+          label="AadharId"
+        />
+        <Form.Input
+          value={panId}
+          onChange={event => setPanId(event.target.value)}
+          fluid
+          id="panId"
+          label="PanId"
+        />
+        <Form.Input
+          value={image}
+          onChange={event => setImage(event.target.value)}
+          fluid
+          id="image"
+          label="Image"
+        />
+        <Form.Select
+          value={relation}
+          selection
+          onChange={event =>
+            console.log((event.target as HTMLSelectElement))
+          }
+          options={listOfReation}
+          fluid
+          placeholder="Relation"
+          label="Relation"
+          id="relation"
+        />
+        <Form.TextArea
+          value={description}
+          onChange={event =>
+            setDescription((event.target as HTMLInputElement).value)
+          }
+          id="description"
+          label="Description"
+        />
+        <Form.Checkbox label="I agree to the Terms and Conditions" />
+        {/* <Link to={`/list`}> */}
+        <Button type="submit" onClick={() => create()}>
+          Submit
+        </Button>
+        {/* </Link> */}
+      </Form>
     </Fragment>
   );
 };
