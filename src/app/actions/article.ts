@@ -62,6 +62,11 @@ export const setFirstName: SwatkatsActionCreator = (firstName: string) => ({
   }
 });
 
+export const setIsPaymentModalOpen: SwatkatsActionCreator = () => ({
+  type: SwatkatsActionType.setIsPaymentModalOpen,
+  payload: {}
+});
+
 export const setLastName: SwatkatsActionCreator = (lastName: string) => ({
   type: SwatkatsActionType.setArticleLastName,
   payload: {

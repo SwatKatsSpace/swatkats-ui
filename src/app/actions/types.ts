@@ -11,6 +11,8 @@ export enum SwatkatsActionType {
   setUserPassword2 = "@swatkats/setUserPassword2",
   setUser = "@swatkats/setUser",
 
+  setIsPaymentModalOpen = "@swatkats/setIsPaymentModalOpen",
+
   setListOfArticle = "@swatkats/setListOfArticle",
   setArticle = "@swatkats/setArticle",
 

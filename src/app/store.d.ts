@@ -6,6 +6,7 @@ interface UserState {
 
 interface ArticleState {
   loading: boolean;
+  isPaymentModalOpen: boolean;
   listOfArticle: Array<Article>;
   selectedArticle: Article;
 }

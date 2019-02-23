@@ -24,3 +24,5 @@ interface Article {
   description: string;
   likes: string;
 }
+
+declare var Razorpay: any;

@@ -1,10 +1,37 @@
 import React, { SFC, Fragment } from "react";
 import { Segment, Item, Label, Button, Icon, List } from "semantic-ui-react";
-// import { Link } from "react-router-dom";
+import { PaymentComponent } from "./PaymentComponent";
 
-export const ArticleComponent: SFC<{ selectedArticle: Article }> = ({
-  selectedArticle
-}) => {
+export const ArticleComponent: SFC<{
+  selectedArticle: Article;
+  isPaymentModalOpen: boolean;
+  setIsPaymentModalOpen: () => void;
+}> = ({ selectedArticle, isPaymentModalOpen, setIsPaymentModalOpen }) => {
+  const options = {
+    key: "rzp_test_Yeo63BRlG8OPbp",
+    amount: "200000", // 2000 paise = INR 20
+    name: "Swatkats Co.",
+    description: "Goodwill for society",
+    image: "/braille.png",
+    handler: function(response: any) {
+      alert(response.razorpay_payment_id);
+    },
+    prefill: {
+      contact: "8888877777",
+      name: "Gaurav Kumar",
+      email: "test@test.com"
+    },
+    notes: {
+      address: "Hello World"
+    },
+    theme: {
+      color: "#a5673f"
+    }
+  };
+
+  const payment = new Razorpay(options);
+  console.log(payment);
+
   return (
     <Fragment>
       <Segment>
@@ -23,7 +50,7 @@ export const ArticleComponent: SFC<{ selectedArticle: Article }> = ({
                 <Label>{selectedArticle.relation}</Label>
                 <br />
                 <br />
-                <List divided vertical size="medium" relaxed="very">
+                <List divided size="medium" relaxed="very">
                   <List.Item>
                     <List.Icon name="mail" />
                     <List.Content>
@@ -51,7 +78,11 @@ export const ArticleComponent: SFC<{ selectedArticle: Article }> = ({
                 </List>
                 <br />
                 <br />
-                <Button floated="right" color="brown">
+                <Button
+                  floated="right"
+                  color="brown"
+                  onClick={() => setIsPaymentModalOpen()}
+                >
                   I want to donate <Icon name="chevron right" />
                 </Button>
               </Item.Extra>
@@ -59,6 +90,10 @@ export const ArticleComponent: SFC<{ selectedArticle: Article }> = ({
           </Item>
         </Item.Group>
       </Segment>
+      <PaymentComponent
+        isPaymentModalOpen={isPaymentModalOpen}
+        setIsPaymentModalOpen={setIsPaymentModalOpen}
+      />
     </Fragment>
   );
 };

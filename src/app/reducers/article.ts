@@ -2,6 +2,7 @@ import { SwatkatsAction, SwatkatsActionType } from "../actions/types";
 
 const Article_DEFAULT_STATE: ArticleState = {
   loading: false,
+  isPaymentModalOpen: false,
   listOfArticle: [],
   selectedArticle: {
     uuid: "",
@@ -29,6 +30,8 @@ export const article = (
   switch (action.type) {
     case SwatkatsActionType.setListOfArticle:
       return { ...state, listOfArticle: action.payload.listOfArticle };
+    case SwatkatsActionType.setIsPaymentModalOpen:
+      return { ...state, isPaymentModalOpen: !state.isPaymentModalOpen };
     case SwatkatsActionType.setArticle:
       return { ...state, selectedArticle: action.payload.article };
     case SwatkatsActionType.setArticleFirstName:
