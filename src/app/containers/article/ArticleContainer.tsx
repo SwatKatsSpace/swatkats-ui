@@ -4,18 +4,27 @@ import { ArticleComponent } from "../../components/article/ArticleComponent";
 import { SwatkatsActionType } from "../../actions/types";
 import { Action, Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { fetchArticle, setIsPaymentModalOpen } from "../../actions/article";
+import {
+  fetchArticle,
+  setIsPaymentModalOpen,
+  setPaymentValue,
+  setPaymentError
+} from "../../actions/article";
 import { withRouter, RouteComponentProps } from "react-router";
 import "./ArticleContainer.css";
 
 interface StateProps {
   selectedArticle: Article;
   isPaymentModalOpen: boolean;
+  paymentValue: number;
+  paymentError: string;
 }
 
 interface DispatchProps {
   fetchArticle: (articleUuid: string) => void;
   setIsPaymentModalOpen: () => void;
+  setPaymentValue: (value: number) => void;
+  setPaymentError: (error: string) => void;
 }
 
 interface OwnProps extends RouteComponentProps<{ articleUuid: string }> {}
@@ -31,7 +40,11 @@ class ArticleSubContainer extends Component<Props> {
     const {
       selectedArticle,
       isPaymentModalOpen,
-      setIsPaymentModalOpen
+      setIsPaymentModalOpen,
+      paymentValue,
+      paymentError,
+      setPaymentValue,
+      setPaymentError
     } = this.props;
     return (
       <Fragment>
@@ -41,6 +54,10 @@ class ArticleSubContainer extends Component<Props> {
             selectedArticle={selectedArticle}
             isPaymentModalOpen={isPaymentModalOpen}
             setIsPaymentModalOpen={setIsPaymentModalOpen}
+            paymentValue={paymentValue}
+            paymentError={paymentError}
+            setPaymentValue={setPaymentValue}
+            setPaymentError={setPaymentError}
           />
         </div>
       </Fragment>
@@ -51,18 +68,23 @@ class ArticleSubContainer extends Component<Props> {
 const mapStateToProps = (state: AppState): StateProps => {
   const { article } = state;
   const selectedArticle = article.selectedArticle;
-  const isPaymentModalOpen = article.isPaymentModalOpen;
+  const { isPaymentModalOpen, value, error } = article.payment;
 
   return {
     selectedArticle,
-    isPaymentModalOpen
+    isPaymentModalOpen,
+    paymentValue: value,
+    paymentError: error
   };
 };
 
 const mapDispatchToProps = (
   dispatch: Dispatch<Action<SwatkatsActionType>>
 ): DispatchProps =>
-  bindActionCreators({ fetchArticle, setIsPaymentModalOpen }, dispatch);
+  bindActionCreators(
+    { fetchArticle, setIsPaymentModalOpen, setPaymentValue, setPaymentError },
+    dispatch
+  );
 
 export const ArticleContainer = withRouter(
   connect<StateProps, DispatchProps, OwnProps, {}>(

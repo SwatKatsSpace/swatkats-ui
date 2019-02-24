@@ -5,33 +5,20 @@ import { PaymentComponent } from "./PaymentComponent";
 export const ArticleComponent: SFC<{
   selectedArticle: Article;
   isPaymentModalOpen: boolean;
+  paymentValue: number;
+  paymentError: string;
   setIsPaymentModalOpen: () => void;
-}> = ({ selectedArticle, isPaymentModalOpen, setIsPaymentModalOpen }) => {
-  const options = {
-    key: "rzp_test_Yeo63BRlG8OPbp",
-    amount: "200000", // 2000 paise = INR 20
-    name: "Swatkats Co.",
-    description: "Goodwill for society",
-    image: "/braille.png",
-    handler: function(response: any) {
-      alert(response.razorpay_payment_id);
-    },
-    prefill: {
-      contact: "8888877777",
-      name: "Gaurav Kumar",
-      email: "test@test.com"
-    },
-    notes: {
-      address: "Hello World"
-    },
-    theme: {
-      color: "#a5673f"
-    }
-  };
-
-  const payment = new Razorpay(options);
-  console.log(payment);
-
+  setPaymentValue: (value: number) => void;
+  setPaymentError: (error: string) => void;
+}> = ({
+  selectedArticle,
+  isPaymentModalOpen,
+  setIsPaymentModalOpen,
+  paymentValue,
+  paymentError,
+  setPaymentValue,
+  setPaymentError
+}) => {
   return (
     <Fragment>
       <Segment>
@@ -39,8 +26,8 @@ export const ArticleComponent: SFC<{
           <Item>
             <Item.Image src={selectedArticle.image} size="big" />
             <Item.Content>
-              <Item.Header as="a">
-                {selectedArticle.firstName + " " + selectedArticle.lastName}
+              <Item.Header>
+                {`${selectedArticle.firstName} ${selectedArticle.lastName}`}
               </Item.Header>
               <Item.Meta>
                 <Icon color="green" name="check" /> Verified
@@ -93,6 +80,10 @@ export const ArticleComponent: SFC<{
       <PaymentComponent
         isPaymentModalOpen={isPaymentModalOpen}
         setIsPaymentModalOpen={setIsPaymentModalOpen}
+        paymentValue={paymentValue}
+        paymentError={paymentError}
+        setPaymentValue={setPaymentValue}
+        setPaymentError={setPaymentError}
       />
     </Fragment>
   );

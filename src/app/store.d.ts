@@ -6,7 +6,7 @@ interface UserState {
 
 interface ArticleState {
   loading: boolean;
-  isPaymentModalOpen: boolean;
+  payment: Payment;
   listOfArticle: Array<Article>;
   selectedArticle: Article;
 }
@@ -14,4 +14,10 @@ interface ArticleState {
 interface AppState {
   user: UserState;
   article: ArticleState;
+}
+
+interface Payment {
+  value: number;
+  error: string;
+  isPaymentModalOpen: boolean;
 }

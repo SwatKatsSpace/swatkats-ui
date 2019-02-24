@@ -1,13 +1,32 @@
 import React, { SFC } from "react";
-import { Button, Icon, Modal, Header, Input, Label } from "semantic-ui-react";
+import {
+  Button,
+  Icon,
+  Modal,
+  Header,
+  Input,
+  Label,
+  Message
+} from "semantic-ui-react";
 
 export const PaymentComponent: SFC<{
   isPaymentModalOpen: boolean;
   setIsPaymentModalOpen: () => void;
-}> = ({ isPaymentModalOpen, setIsPaymentModalOpen }) => {
+  paymentValue: number;
+  paymentError: string;
+  setPaymentValue: (value: number) => void;
+  setPaymentError: (error: string) => void;
+}> = ({
+  isPaymentModalOpen,
+  setIsPaymentModalOpen,
+  paymentValue,
+  paymentError,
+  setPaymentValue,
+  setPaymentError
+}) => {
   const options = {
     key: "rzp_test_Yeo63BRlG8OPbp",
-    amount: "200000", // 2000 paise = INR 20
+    amount: paymentValue * 100, // 2000 paise = INR 20
     name: "Swatkats Co.",
     description: "Goodwill for society",
     image: "/braille.png",
@@ -28,17 +47,29 @@ export const PaymentComponent: SFC<{
   };
 
   const payment = new Razorpay(options);
-  console.log(payment);
 
   return (
     <Modal open={isPaymentModalOpen} basic size="mini">
       <Header icon="rupee sign" content="Make Payment" />
       <Modal.Content>
-        <Input labelPosition="right" type="text" placeholder="Amount" fluid>
+        <Input
+          labelPosition="right"
+          type="text"
+          placeholder="Amount"
+          fluid
+          value={paymentValue}
+          onChange={event => setPaymentValue(Number(event.target.value))}
+        >
           <Label basic>₹</Label>
           <input />
           <Label>.00</Label>
         </Input>
+        <Message
+          hidden={!Boolean(paymentError)}
+          negative
+          size="mini"
+          content={paymentError}
+        />
       </Modal.Content>
       <Modal.Actions>
         <Button

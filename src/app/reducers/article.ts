@@ -2,8 +2,12 @@ import { SwatkatsAction, SwatkatsActionType } from "../actions/types";
 
 const Article_DEFAULT_STATE: ArticleState = {
   loading: false,
-  isPaymentModalOpen: false,
   listOfArticle: [],
+  payment: {
+    value: 100,
+    error: "",
+    isPaymentModalOpen: false
+  },
   selectedArticle: {
     uuid: "",
     firstName: "",
@@ -23,15 +27,52 @@ export const article = (
   state = Article_DEFAULT_STATE,
   action: SwatkatsAction
 ): ArticleState => {
-  console.log("hello");
-  console.log(state);
-  console.log(action);
-
   switch (action.type) {
     case SwatkatsActionType.setListOfArticle:
       return { ...state, listOfArticle: action.payload.listOfArticle };
     case SwatkatsActionType.setIsPaymentModalOpen:
-      return { ...state, isPaymentModalOpen: !state.isPaymentModalOpen };
+      return {
+        ...state,
+        payment: {
+          ...state.payment,
+          isPaymentModalOpen: !state.payment.isPaymentModalOpen
+        }
+      };
+    case SwatkatsActionType.setPaymentValue:
+      if (isNaN(action.payload.value)) {
+        return {
+          ...state,
+          payment: {
+            ...state.payment,
+            error: "Only numbers allowed"
+          }
+        };
+      }
+      if (action.payload.value < 100) {
+        return {
+          ...state,
+          payment: {
+            ...state.payment,
+            error: "Amount should be more than ₹99"
+          }
+        };
+      }
+      return {
+        ...state,
+        payment: {
+          ...state.payment,
+          value: action.payload.value,
+          error: ""
+        }
+      };
+    case SwatkatsActionType.setPaymentError:
+      return {
+        ...state,
+        payment: {
+          ...state.payment,
+          error: action.payload.value
+        }
+      };
     case SwatkatsActionType.setArticle:
       return { ...state, selectedArticle: action.payload.article };
     case SwatkatsActionType.setArticleFirstName:

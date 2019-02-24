@@ -67,6 +67,16 @@ export const setIsPaymentModalOpen: SwatkatsActionCreator = () => ({
   payload: {}
 });
 
+export const setPaymentValue: SwatkatsActionCreator = (value: number) => ({
+  type: SwatkatsActionType.setPaymentValue,
+  payload: { value }
+});
+
+export const setPaymentError: SwatkatsActionCreator = (error: string) => ({
+  type: SwatkatsActionType.setPaymentError,
+  payload: { error }
+});
+
 export const setLastName: SwatkatsActionCreator = (lastName: string) => ({
   type: SwatkatsActionType.setArticleLastName,
   payload: {
