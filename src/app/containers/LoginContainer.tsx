@@ -1,60 +1,63 @@
-import React, { Fragment, Component, Props } from "react";
-import {Header} from "../../base/components/Header";
-import {LoginComponent} from "../components/LoginComponent";
+import React, { Fragment, Component } from "react";
+import { Header } from "../../base/components/Header";
+import { LoginComponent } from "../components/LoginComponent";
 import { SwatkatsActionType } from '../actions/types';
-import {Action, Dispatch, bindActionCreators} from "redux"
+import { Action, Dispatch, bindActionCreators } from "redux"
 
 import {
-    setLoginEmail,
-    setLoginPhone,
-    setLoginPassword,
-    doLogin
-} from "../actions/login";
+    setUserEmail,
+    setUserPhone,
+    setUserPassword1,
+    login
+} from "../actions/user";
 
-import connect from  "react-redux";
+import { connect } from "react-redux";
 
 interface StateProps {
-    email : string;
-    phone : string;
-    password : string;
+    email: string;
+    phone: string;
+    password: string;
 }
 
 interface DispatchProps {
-    setLoginEmail: (email: string) => void;
-    setLoginPhone: (phone : string) => void;
-    setLoginPassword: (password: string) => void;
-    doLogin: () => void;
+    setUserEmail: (email: string) => void;
+    setUserPhone: (phone: string) => void;
+    setUserPassword1: (password: string) => void;
+    login: () => void;
 }
-
-class login extends Component<Props> {
+class Login extends Component<StateProps & DispatchProps> {
+    
     render() {
         const {
             email,
             phone,
-            password
+            password,
+            setUserEmail,
+            setUserPhone,
+            setUserPassword1,
+            login
         } = this.props;
 
         return (
             <Fragment>
-                <Header>
-                    <LoginComponent
+                <Header />
+                <LoginComponent
                     email={email}
                     phone={phone}
                     password={password}
-                    doLogin={doLogin}
-                    setLoginEmail={setLoginEmail}
-                    setLoginPhone={setLoginPhone}
-                    setLoginPassword={setLoginPassword}
-                    >
-                    </LoginComponent>
-                </Header>
+                    doLogin={login}
+                    setLoginEmail={setUserEmail}
+                    setLoginPhone={setUserPhone}
+                    setLoginPassword={setUserPassword1}
+                />
             </Fragment>
         );
     }
 }
 
-const mapStateToProps = (state : AppState): StateProps => {
-    const {email, phone, password} = state.user.user;
+const mapStateToProps = (state: AppState): StateProps => {
+    const { email, phone, password } = state.user.user;
+
     return {
         email,
         phone,
@@ -65,15 +68,16 @@ const mapStateToProps = (state : AppState): StateProps => {
 const mapDispatchToProps = (
     dispatch: Dispatch<Action<SwatkatsActionType>>
 ): DispatchProps => bindActionCreators({
-    setLoginEmail,
-    setLoginPhone,
-    setLoginPassword
+    setUserEmail,
+    setUserPhone,
+    setUserPassword1,
+    login
 },
     dispatch
 );
 
-export const loginContainer = connect<StateProps, DispatchProps, {}, {}>(
+export const LoginContainer = connect<StateProps, DispatchProps, {}, {}>(
     mapStateToProps,
     mapDispatchToProps
-  )(login);
-  
+)(Login);
+

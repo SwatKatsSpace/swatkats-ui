@@ -4,6 +4,7 @@ import {
   SwatkatsAsyncActionCreator
 } from "./types";
 import { fetchUserInfo, saveUserDetails } from "../services/signup";
+import { loginService } from "../services/login";
 
 export const fetchUser = (): SwatkatsAsyncActionCreator => async (
   dispatch,
@@ -74,5 +75,16 @@ export const createUser = (): SwatkatsAsyncActionCreator => async (
 
   const response = await saveUserDetails(user);
 
+  console.log(response);
+};
+
+
+export const login = (): SwatkatsAsyncActionCreator => async (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const { email, phone, password } = state.user.user;
+  const response = await loginService({ email, phone, password });
   console.log(response);
 };
