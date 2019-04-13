@@ -1,8 +1,8 @@
 import React, { SFC, Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import { SignupContainer } from "./app/containers/SignupContainer";
-import { LoginContainer } from "./app/containers/LoginContainer";
+import { SignupContainer } from "./app/containers/signup/SignupContainer";
+import { LoginContainer } from "./app/containers/login/LoginContainer";
 import { ArticleListContainer } from "./app/containers/article-list/ArticleListContainer";
 import { ArticleContainer } from "./app/containers/article/ArticleContainer";
 import { ArticleCreateContainer } from "./app/containers/article-create/ArticleCreateContainer";

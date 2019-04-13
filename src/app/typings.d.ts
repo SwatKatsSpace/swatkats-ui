@@ -25,4 +25,9 @@ interface Article {
   likes: string;
 }
 
+interface TokenWrapper {
+  user: User;
+  token: string;
+}
+
 declare var Razorpay: any;

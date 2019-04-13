@@ -10,7 +10,8 @@ const USER_DEFAULT_STATE: UserState = {
     aadharId: "",
     panId: "",
     password: ""
-  }
+  },
+  isLoggedIn: false
 };
 
 export const user = (
@@ -40,6 +41,8 @@ export const user = (
       if (state.user.password !== action.payload.password2) {
         return { ...state, error: true };
       }
+    case SwatkatsActionType.setLoginStatus:
+      return { ...state, isLoggedIn: action.payload.status };
   }
   return state;
 };

@@ -76,7 +76,7 @@ class ArticleCreateSubContainer extends Component<Props> {
 
     return (
       <Fragment>
-        <Header />
+        <Header isLoggedIn={false} name="" />
         <div className="article-create-container">
           <ArticleCreateComponent
             firstName={firstName}

@@ -48,7 +48,7 @@ class ArticleSubContainer extends Component<Props> {
     } = this.props;
     return (
       <Fragment>
-        <Header />
+        <Header isLoggedIn={false} name="" />
         <div className="article-container">
           <ArticleComponent
             selectedArticle={selectedArticle}

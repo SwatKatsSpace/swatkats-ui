@@ -27,7 +27,9 @@ export enum SwatkatsActionType {
   setArticleImage = "@swatkats/setArticleImage",
   setArticleRelation = "@swatkats/setArticleRelation",
   setArticleDescription = "@swatkats/setArticleDescription",
-  setArticleLikes = "@swatkats/setArticleLikes"
+  setArticleLikes = "@swatkats/setArticleLikes",
+
+  setLoginStatus = "@swatkats/setLoginStatus"
 }
 
 export interface SwatkatsAction extends Action<SwatkatsActionType> {

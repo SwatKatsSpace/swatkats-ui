@@ -10,6 +10,8 @@ import "./ArticleListContainer.css";
 
 interface StateProps {
   listOfArticle: Array<Article>;
+  isLoggedIn: boolean;
+  name: string;
 }
 
 interface DispatchProps {
@@ -24,11 +26,11 @@ class ArticleList extends Component<Props> {
   }
 
   render() {
-    const { listOfArticle } = this.props;
+    const { listOfArticle, isLoggedIn, name } = this.props;
 
     return (
       <Fragment>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} name={name} />
         <div className="article-list-container">
           {listOfArticle.length > 0 ? (
             <ArticleListComponent listOfArticle={listOfArticle} />
@@ -47,11 +49,17 @@ class ArticleList extends Component<Props> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-  const { article } = state;
+  const { article, user } = state;
+  const {
+    isLoggedIn,
+    user: { name }
+  } = user;
   const listOfArticle = article.listOfArticle;
 
   return {
-    listOfArticle
+    listOfArticle,
+    isLoggedIn,
+    name
   };
 };
 

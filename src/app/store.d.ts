@@ -2,6 +2,7 @@ interface UserState {
   loading: boolean;
   error: boolean;
   user: User;
+  isLoggedIn: boolean;
 }
 
 interface ArticleState {
